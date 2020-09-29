@@ -2,7 +2,7 @@ import MongoClient from 'mongodb'
 
 // Connection parameters for the database
 // TODO: Move this sensitive info to a dotenv file
-const uri = 'mongodb://localhost:27017/'
+const uri = 'mongodb+srv://kadrez:LGTCznCGVNZRzIbK@cluster0.ccolx.mongodb.net/<dbname>?retryWrites=true&w=majority'
 const dbName = 'garden'
 
 /**
