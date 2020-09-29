@@ -11,7 +11,7 @@ router.get('/listAlerts', async (req, res) => {
 
 router.post('/createAlert', async (req, res) => {
     const alert = {
-        plant: req.body.plnat,
+        plant: req.body.plant,
         type: req.body.type,
         date: req.body.date,
         img_url: req.body.img_url
