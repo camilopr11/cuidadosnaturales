@@ -16,7 +16,7 @@ export async function connect() {
         const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
         const db = client.db(dbName)
         if (db) {
-            console.log("That's a bingo!")
+            console.log("Connection with Database established!")
         }
         return db
     } catch (e) {

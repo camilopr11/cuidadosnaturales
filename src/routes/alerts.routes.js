@@ -18,8 +18,10 @@ router.post('/createAlert', async (req, res) => {
     }
     const result = await new AlertsController.createAlert(alert)
 
-    res.json({ "data": result })
-    
+    res.status(200).json({
+        success: true,
+        "data": result
+    })
 
 })
 export default router
