@@ -1,33 +1,30 @@
-const Enciclopedia = require('../models/enciclopedia_model')
+import { connect } from '../database/connection'
 
 class enciclopediaController {
 
     static async createInfo(info) {
         try {
-            const title = info.title;
-            const description = info.description;
-            const content = info.content;
-            const category = info.category;
-            const new_info = new Enciclopedia({title, description, content, category})
-            await new_info.save((err, doc) =>{
-                console.log(err);
-            });
-            return new_info;
+            const db = await connect()
+            const result = await db.collection('enciclopedia').insertOne(info)
+            return result
         } catch (e) {
             return e
         }
     }
+    
 
     static async listInfo(){
-        const enciclopedia = await Enciclopedia.find().sort({date: 'desc'}).lean();
+        const db = await connect()
+        const enciclopedia = await db.collection('enciclopedia').find().sort({date: 'desc'}).lean();
         return enciclopedia;
     }
 
     static async search(title){
         try{
+            const db = await connect()
             const info = title.title;
             console.log('esta es info: ' +info);
-            const enciclopedia = await Enciclopedia.find({"title": {'$regex': info }}).lean();
+            const enciclopedia = await db.collection('enciclopedia').find({"title": {'$regex': info }}).lean();
             return enciclopedia;
         }catch(e){
             return e
