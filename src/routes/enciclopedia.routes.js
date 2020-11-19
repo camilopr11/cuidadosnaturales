@@ -1,26 +1,23 @@
-const express = require('express');
-const router = express.Router();
-//import enciclopediaController from '../controllers/enciclopedia_controller'
-const enciclopediaController = require('../controllers/enciclopedia_controller');
-
+import { Router } from 'express'
+import { connect } from '../database/connection'
+import enciclopediaController from '../controllers/enciclopedia_controller'
+const router = Router()
 
 //Ruta para listar
 router.get('/enciclopedia/listInfo', async (req, res) => {
-    const enciclopedia = await enciclopediaController.listInfo()
-    //console.log(enciclopedia);
-    //res.send(enciclopedia);
-    res.render('enciclopedia_list', {enciclopedia})
+    const enciclopedia = await new enciclopediaController().listInfo()
+    res.json(enciclopedia)
 })
 
 //Rutas para buscar
 router.get('/enciclopedia/search', async (req, res) =>{
-    res.render('enciclopedia_search');
+    res.json('enciclopedia_search');
 })
 
 router.post('/enciclopedia/search', async (req, res) =>{
     const title = req.body
     console.log(title);
-    const enciclopedia = await enciclopediaController.search(title)
+    const enciclopedia = await new enciclopediaController.search(title)
     console.log(enciclopedia);
     res.render('enciclopedia_search', {enciclopedia});
 })
@@ -59,7 +56,7 @@ router.post('/enciclopedia/new-info', async (req, res) => {
     }else{
         const info = {title, description, content, category }
         console.log(info);
-        const result = await enciclopediaController.createInfo(info);
+        const result = await new enciclopediaController.createInfo(info);
         console.log(result);
         //res.send(result);
         res.redirect('/enciclopedia/listInfo');
