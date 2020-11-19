@@ -14,10 +14,16 @@ class enciclopediaController {
     
 
     async listInfo(){
-        const db = await connect()
-        const enciclopedia = await db.collection('enciclopedias').find().sort({date: 'desc'});
-        return enciclopedia;
+        try {
+            const db = await connect()
+            const result = await db.collection('enciclopedias').find({}).toArray()
+            return result
+        } catch (e) {
+            return e
+        }
+
     }
+
 
     async search(title){
         try{
