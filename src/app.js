@@ -2,7 +2,7 @@ import express, { json } from 'express'
 import IndexRoutes from './routes/index.routes'
 import PlantsRoutes from './routes/plants.routes'
 import AlertsRoutes from './routes/alerts.routes'
-import EnciclopediaRoutes from './routes/enciclopedia_routes.routes'
+import EnciclopediaRoutes from './routes/enciclopedia.routes'
 const app = express() 
 
 // Settings
