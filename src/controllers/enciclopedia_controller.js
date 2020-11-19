@@ -15,7 +15,7 @@ class enciclopediaController {
 
     static async listInfo(){
         const db = await connect()
-        const enciclopedia = await db.collection('enciclopedia').find().sort({date: 'desc'}).lean();
+        const enciclopedia = await db.collection('enciclopedia').find().sort({date: 'desc'});
         return enciclopedia;
     }
 
@@ -24,7 +24,7 @@ class enciclopediaController {
             const db = await connect()
             const info = title.title;
             console.log('esta es info: ' +info);
-            const enciclopedia = await db.collection('enciclopedia').find({"title": {'$regex': info }}).lean();
+            const enciclopedia = await db.collection('enciclopedia').find({"title": {'$regex': info }});
             return enciclopedia;
         }catch(e){
             return e
