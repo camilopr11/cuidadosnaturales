@@ -2,7 +2,7 @@ import { connect } from '../database/connection'
 
 class enciclopediaController {
 
-    async createInfo(info) {
+    static async createInfo(info) {
         try {
             const db = await connect()
             const result = await db.collection('enciclopedias').insertOne(info)
