@@ -13,38 +13,20 @@ router.get('/enciclopedia/listInfo', async (req, res) => {
 //Rutas para agregar 
 
 router.post('/enciclopedia/new-info', async (req, res) => {
-    const {title, description, content, category } = req.body;
-    const errors = [];
-    if(!title){
-        errors.push({text: 'Por favor ingrese el titulo'});
-    }
-    if(!description){
-        errors.push({text: 'Por favor ingrese una descripcion'});
-    }
-    if(!content){
-        errors.push({text: 'Por favor ingrese el contenido'});
-    }
-    if(!category){
-        errors.push({text: 'Por favor ingrese una categoria'});
-    }
-    if(errors.length > 0){
-        const info = {title, description, content, category }
-       //res.send(info);
-        res.render('enciclopedia_add', {
-            errors,
-            title,
-            description,
-            content,
-            category
-    });
-    }else{
-        const info = {title, description, content, category }
-        console.log(info);
-        const result = await new enciclopediaController.createInfo(info);
-        console.log(result);
-        //res.send(result);
-        res.redirect('/enciclopedia/listInfo');
-    }
+    const info = {
+        title: req.body.title, 
+        description: req.body.description, 
+        content: req.body.content, 
+        category: req.body.category 
+    } 
+    const result = await new enciclopediaController.createInfo(info)
+
+    res.status(200).json({
+        success: true,
+        "data": result
+    })
+   
+    
     
 })
 
