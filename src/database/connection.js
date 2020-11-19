@@ -24,3 +24,15 @@ export async function connect() {
     }
 
 }
+
+
+const mongoose = require('mongoose');
+
+const MONGODB_URI = 'mongodb+srv://kadrez:LGTCznCGVNZRzIbK@cluster0.ccolx.mongodb.net/garden?retryWrites=true&w=majority'
+
+ mongoose.connect(MONGODB_URI, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+})
+    .then(() => console.log('db is connected'))
+    .catch(err => console.error(err));
