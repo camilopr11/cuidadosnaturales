@@ -19,6 +19,9 @@ router.post('/createPlants', async (req, res) => {
     }
     const result = await new PlantController.createPlant(plant)
 
-    res.json({ "data": result })
+    res.status(200).json({
+        success: true,
+        "data": result
+    })
 })
 export default router
